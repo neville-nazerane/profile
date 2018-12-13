@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProfileLink>
+
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<div>
+
+    @foreach (var link in Model)
+    {
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">
+                <a class="card-link" href="@link.URL">@link.Title</a>
+            </h1>
+            <img azure-src="@link.IconName" />
+        </div>
+        <div class="card-footer">
+            @if (link.Enabled)
+            {
+                <a class="btn btn-sm btn-danger" asp-action="Disable" asp-route-id="@link.Id">Disable</a>
+            }
+            else
+            {
+                <a class="btn btn-sm btn-success" asp-action="Enable" asp-route-id="@link.Id">Enable</a>
+            }
+            <a class="btn btn-sm btn-warning" asp-route-id="@link.Id" asp-action="Edit">Edit</a>
+            <a class="btn btn-sm btn-info btn-up" asp-route-id="@link.Id" asp-action="MoveUp"></a>
+            <a class="btn btn-sm btn-info btn-down" asp-route-id="@link.Id" asp-action="MoveDown"></a>
+            <a class="btn btn-sm btn-danger" asp-route-id="@link.Id" asp-action="Delete">Delete</a>
+        </div>
+    </div>
+    }
+
+    <a class="btn btn-lg btn-success" asp-action="Add">Add</a>
+
+</div>
+

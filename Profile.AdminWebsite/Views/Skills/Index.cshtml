@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SkillType>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="">
+
+    @foreach (var type in Model)
+    {
+        <div class="card">
+            <div class="card-title">
+                <h2>@type.Title
+                    <span class="btn-group">
+                        <a class="btn btn-info btn-up" asp-action="moveTypeUp" asp-route-id="@type.Id"></a>
+                        <a class="btn btn-info btn-down" asp-action="moveTypeDown" asp-route-id="@type.Id"></a>
+                    </span>
+                </h2>
+
+            </div>
+            <div class="card-body">
+                <ul>
+                    @foreach (var skill in type.Skills)
+                    {
+                    <li class="list-group-item" >
+                        <div class="row">
+                            <div class="col-sm-4">@skill.Title</div>
+                            <div class="col-sm-3 btn-group">
+                                <a class="btn btn-info btn-sm btn-up" asp-action="moveItemUp" asp-route-id="@skill.Id"></a>
+                                <a class="btn btn-info btn-sm btn-down" asp-action="moveItemDown" asp-route-id="@skill.Id"></a>
+                                <a class="btn btn-danger btn-sm" asp-action="deleteItem" asp-route-id="@skill.Id">Delete</a>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+            <div class="card-footer btn-group">
+                <a class="btn btn-success btn-sm" asp-action="addItem" asp-route-typeId="@type.Id">Add Item</a>
+                @if (type.Enabled)
+                {
+                    <a class="btn btn-sm btn-danger" asp-action="Disable" asp-route-id="@type.Id">Disable</a>
+                }
+                else
+                {
+                    <a class="btn btn-sm btn-success" asp-action="Enable" asp-route-id="@type.Id">Enable</a>
+                }
+                <a class="btn btn-warning btn-sm" asp-action="editType" asp-route-id="@type.Id">Edit</a>
+                <a class="btn btn-danger btn-sm" asp-action="deleteType" asp-route-id="@type.Id">Delete</a>
+            </div>
+        </div>
+        <br />
+    }
+
+    <a class="btn btn-success" asp-action="addType">Add</a>
+
+</div>
+

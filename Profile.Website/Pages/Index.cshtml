@@ -2,41 +2,41 @@
 @model IndexModel
 
 
-<h2 class="text-center">Profile Links</h2>
 
-<div class="card-group">
+<div class="card-deck mt-5 mb-4">
 
     @foreach (var link in Model.ProfileLinks)
     {
-    <div class="card">
-        <div class="card-body">
+    <div class="card shadow">
+        <a href="@link.URL" class="card-body card-link text-center">
             <div class="card-title">@link.Title</div>
             <div class="card-img">
                 <img azure-src="@link.IconName" />
             </div>
-        </div>
+        </a>
     </div>
     }
 </div>
 
 
 
-<h2>Projects</h2>
-
 @foreach (var project in Model.Projects)
 {
-    <div class="card">
+    <div class="card shadow-sm mt-3">
         <div class="card-body">
-            <div class="card-title">@project.Title</div>
+            <h2 class="card-title">@project.Title</h2>
             <div class="card-text">@project.Description</div>
-            @if (project.Link != null)
-            {
-                <a href="@project.Link" class="btn btn-success">View</a>
-            }
-            @if (project.SourceCode != null)
-            {
-                <a href="@project.SourceCode" class="btn btn-success">Source Code</a>
-            }
+
+            <div class="btn-group mt-4">
+                @if (project.Link != null)
+                {
+                    <a href="@project.Link" class="btn btn-success">View</a>
+                }
+                @if (project.SourceCode != null)
+                {
+                    <a href="@project.SourceCode" class="btn btn-success">Source Code</a>
+                }
+            </div>
         </div>
     </div>
 }

@@ -11,7 +11,7 @@ KillSignal=SIGINT
 SyslogIdentifier=profile
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production
-Environment=connectionStrings__sqlDb=#{confg.sqlDb}#
+Environment=connectionStrings__sqlDb='#{confg.sqlDb}#'
 Environment=azBlob__keyName="#{config.blobName}#"
 Environment=azBlob__key="#{config.blobKey}#"
 Environment=azBlob__accountName="#{config.blobAccount}#"

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Profile.Website
 {
@@ -34,11 +35,11 @@ namespace Profile.Website
             services.AddLogic(Configuration)
                     .AddAzureBlob(Configuration.GetSection("azBlob"));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddRazorPages().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
             //app.Use(async (context, next) => {
@@ -61,13 +62,21 @@ namespace Profile.Website
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseRouting();
+
             app.Use(async (context, next) => {
                 if (context.Request.Path != "/")
                     context.Response.Redirect("/");
                 else await next();
             });
 
-            app.UseMvc();
+            app.UseEndpoints(endpoints => {
+
+                endpoints.MapRazorPages();
+
+            });
+
+            //app.UseMvc();
         }
     }
 }

@@ -11,9 +11,10 @@ KillSignal=SIGINT
 SyslogIdentifier=blazor-sample
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production
-Environment=signalr=#{config.signalr}#
-Environment=ConnectionStrings__db="#{config.dbConn}#"
-
+Environment=connectionStrings__sqlDb=#{confg.sqlDb}#
+Environment=azBlob__keyName="#{config.blobName}#"
+Environment=azBlob__key="#{config.blobKey}#"
+Environment=azBlob__accountName="#{config.blobAccount}#"
 
 [Install]
 WantedBy=multi-user.target

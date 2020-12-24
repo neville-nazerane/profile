@@ -39,12 +39,6 @@ namespace Profile.Website
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            //app.Use(async (context, next) => {
-            //    if (context.Request.Path == "/")
-            //        context.Response.Redirect("/Links");
-            //    else await next();
-            //});
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -55,7 +49,6 @@ namespace Profile.Website
                 app.UseHsts();
             }
 
-          //  app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -73,7 +66,6 @@ namespace Profile.Website
 
             });
 
-            //app.UseMvc();
         }
     }
 }

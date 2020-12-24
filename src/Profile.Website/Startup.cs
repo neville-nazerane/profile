@@ -32,9 +32,6 @@ namespace Profile.Website
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddLogic(Configuration)
-                    .AddAzureBlob(Configuration.GetSection("azBlob"));
-
             services.AddRazorPages().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 

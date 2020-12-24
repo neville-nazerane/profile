@@ -8,6 +8,5 @@
   <ItemGroup>
     <PackageReference Include="AspNetCore.KeyVault" Version="1.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
-    <PackageReference Include="NetCore.Azure.Blob" Version="2.0.2" />
   </ItemGroup>
 </Project>

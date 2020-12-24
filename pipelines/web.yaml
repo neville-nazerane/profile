@@ -23,7 +23,7 @@ extends:
     projectPath: src/Profile.Website
     projectName: Profile.Website
     destDirectory: /var/www/profile
-    port: 5030
+    port: 5050
 
     service:
       description: Personal Profile

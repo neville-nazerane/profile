@@ -20,8 +20,6 @@ namespace Profile.Website
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseUrlsIfExists()
-                .UseKeyVaultConfiguration(Environment.GetEnvironmentVariable("KEYVAULT_ENDPOINT"), 
-                                            "profile", true)
                 .UseStartup<Startup>();
     }
 }

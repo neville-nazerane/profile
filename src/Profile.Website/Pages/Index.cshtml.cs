@@ -65,7 +65,7 @@ namespace Profile.Website.Pages
                 {
                     Title = "AutoSite",
                     Description = "AI based app that reads, interprets and predicts data types and field names from an images. The output can then be used to generate a full stack website with database and UI.",
-                    Link = "http://autosite.nevillenazerane.com/",
+                    Link = null,
                     SourceCode = "https://github.com/neville-nazerane/autosite"
                 },
                 new Project

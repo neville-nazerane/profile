@@ -4,8 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Profile.Core.Entities;
-using Profile.Services;
+using Profile.Website.Models;
 
 namespace Profile.Website.Pages
 {
@@ -16,14 +15,14 @@ namespace Profile.Website.Pages
 
         public IEnumerable<Project> Projects { get; set; }
 
-        public IndexModel(IProfileLinkRepository profileLinkRepository, IProjectsRepository projectsRepository)
-        {
-            ProfileLinks = profileLinkRepository.List();
-            Projects = projectsRepository.List();
-        }
+        //public IndexModel(IProfileLinkRepository profileLinkRepository, IProjectsRepository projectsRepository)
+        //{
+        //    ProfileLinks = profileLinkRepository.List();
+        //    Projects = projectsRepository.List();
+        //}
 
-        public void OnGet()
-        {
-        }
+        //public void OnGet()
+        //{
+        //}
     }
 }

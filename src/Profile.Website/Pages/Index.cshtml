@@ -25,13 +25,13 @@
             <div class="card-text">@project.Description</div>
 
             <div class="mt-4">
-                @if (project.Link != null)
-                {
-                <a href="@project.Link" class="btn btn-success">Website</a>
-                }
                 @if (project.SourceCode != null)
                 {
                 <a href="@project.SourceCode" class="btn btn-success">Source Code</a>
+                }
+                @if (project.Link != null)
+                {
+                <a href="@project.Link" class="btn btn-success">Website</a>
                 }
             </div>
         </div>

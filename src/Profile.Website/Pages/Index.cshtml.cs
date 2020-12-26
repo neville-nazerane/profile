@@ -58,7 +58,7 @@ namespace Profile.Website.Pages
                 {
                     Title = "Nuget Documentation",
                     Description = "Documentation for recent nuget packages.",
-                    Link = null,
+                    Link = "https://docs.nevillenazerane.com",
                     SourceCode = "https://github.com/neville-nazerane/docs"
                 },
                 new Project

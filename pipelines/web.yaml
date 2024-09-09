@@ -1,5 +1,7 @@
-pool:
-  vmImage: 'ubuntu-latest'
+
+pool: hosted-linux
+
+pr: none
 
 trigger:
   branches:

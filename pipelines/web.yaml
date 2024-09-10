@@ -85,7 +85,7 @@ stages:
       - deployment: Deployment
         displayName: Deploy to Development VM
         environment:
-          name: SmartHome Hub
+          name: Development
           resourceType: VirtualMachine
           resourceName: Web Server
         strategy:

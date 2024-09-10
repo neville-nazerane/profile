@@ -10,27 +10,140 @@ trigger:
   paths:
     include:
       - src
+      - pipelines/web.yaml
 
-resources:
-  repositories:
-    - repository: templates
-      type: github
-      name: neville-nazerane/Common-Pipelines
-      endpoint: github.com_neville-nazerane
+            
 
-extends:
-  template: Shared\netcore-ubuntu.yml@templates
-  parameters:
-    usePreRelease: false
-    projectPath: src/Profile.Website
-    projectName: Profile.Website
-    destDirectory: /var/www/profile
-    port: 5055
+parameters:
 
-    service:
-      description: Personal Profile
-      identifier: profile
-      name: kestrel-profile
-    configs:
-      ASPNETCORE_ENVIRONMENT: Production
+- name: projectPath
+  type: string
+  default: src/Profile.Website
+
+- name: projectName
+  type: string
+  default: Profile.Website
+
+- name: destDirectory
+  type: string 
+  default: /var/www/profile
+
+- name: url
+  type: string
+  default: http://localhost:5055
+  
+- name: service
+  type: object
+  default:
+    description: Personal Profile
+    identifier: profile
+    name: kestrel-profile
+
+    
+variables:
+  
+  - name: serviceTemplate
+    value:  |
+      [Unit]
+      Description=${{ parameters.service.description }}
+
+      [Install]
+      WantedBy=multi-user.target
+
+      [Service]
+      WorkingDirectory=${{ parameters.destDirectory }}
+      ExecStart=/usr/bin/dotnet ${{ parameters.destDirectory }}/${{ parameters.projectName }}.dll --urls ${{ parameters.url }}
+      Restart=always
+      # Restart service after 10 seconds if the dotnet service crashes:
+      RestartSec=10
+      KillSignal=SIGINT
+      SyslogIdentifier=${{ parameters.service.identifier }}
+      User=root
+
+
+
+stages:
+  - stage: CI
+    jobs:
+      - job: Compile
+        steps:
+
+        - script: |
+            dotnet publish ${{ parameters.projectPath }} -c release -o published
+            mkdir -p compressed
+            tar -czf compressed/${{ parameters.projectName }}.tar.gz -C published .
+          displayName: Publishing web app
+
+        - publish: compressed
+          displayName: Publish for release
+          artifact: published
+
+  - stage: Deploy
+    displayName: Deploy to VM
+
+    jobs:
+      - deployment: Deployment
+        displayName: Deploy to Development VM
+        environment:
+          name: SmartHome Hub
+          resourceType: VirtualMachine
+          resourceName: Web Server
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                
+                - checkout: none
+
+                - download: current
+                  displayName: download published artifact
+                  artifact: published
+
+                - script: echo "$(serviceTemplate)" > $(Pipeline.Workspace)/published/linux.service
+                  displayName: Generate service file
+
+                - template: hub-config.yml
+
+                - script: |
+                    sudo rm -rf ${{ parameters.destDirectory }}
+                    sudo tar -xzf ${{ parameters.projectName }}.tar.gz -d ${{ parameters.destDirectory }}
+
+                    sudo mv linux.service /etc/systemd/system/${{ parameters.service.name }}.service -f
+
+                    sudo systemctl enable ${{ parameters.service.name }}.service 
+                    sudo systemctl stop ${{ parameters.service.name }}.service 
+                    sudo systemctl start ${{ parameters.service.name }}.service
+  
+                    rm -rf *
+                  displayName: Updating website
+                  workingDirectory: $(Pipeline.Workspace)/published
+      
+                - task: DeleteFiles@1
+                  displayName: Clean up
+            
+    
+
+
+# resources:
+#   repositories:
+#     - repository: templates
+#       type: github
+#       name: neville-nazerane/Common-Pipelines
+#       endpoint: github.com_neville-nazerane
+
+# extends:
+#   template: Shared\netcore-ubuntu.yml@templates
+#   parameters:
+#     usePreRelease: false
+#     projectPath: src/Profile.Website
+#     projectName: Profile.Website
+#     destDirectory: /var/www/profile
+#     port: 5055
+
+#     service:
+#       description: Personal Profile
+#       identifier: profile
+#       name: kestrel-profile
+#     configs:
+#       ASPNETCORE_ENVIRONMENT: Production
 

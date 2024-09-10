@@ -106,6 +106,7 @@ stages:
 
                 - script: |
                     sudo rm -rf ${{ parameters.destDirectory }}
+                    sudo mkdir -p ${{ parameters.destDirectory }}
                     sudo tar -xzf ${{ parameters.projectName }}.tar.gz -d ${{ parameters.destDirectory }}
 
                     sudo mv linux.service /etc/systemd/system/${{ parameters.service.name }}.service -f

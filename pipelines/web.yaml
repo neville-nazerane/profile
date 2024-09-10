@@ -123,28 +123,3 @@ stages:
                   displayName: Clean up
             
     
-
-
-# resources:
-#   repositories:
-#     - repository: templates
-#       type: github
-#       name: neville-nazerane/Common-Pipelines
-#       endpoint: github.com_neville-nazerane
-
-# extends:
-#   template: Shared\netcore-ubuntu.yml@templates
-#   parameters:
-#     usePreRelease: false
-#     projectPath: src/Profile.Website
-#     projectName: Profile.Website
-#     destDirectory: /var/www/profile
-#     port: 5055
-
-#     service:
-#       description: Personal Profile
-#       identifier: profile
-#       name: kestrel-profile
-#     configs:
-#       ASPNETCORE_ENVIRONMENT: Production
-

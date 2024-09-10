@@ -102,8 +102,6 @@ stages:
                 - script: echo "$(serviceTemplate)" > $(Pipeline.Workspace)/published/linux.service
                   displayName: Generate service file
 
-                - template: hub-config.yml
-
                 - script: |
                     sudo rm -rf ${{ parameters.destDirectory }}
                     sudo tar -xzf ${{ parameters.projectName }}.tar.gz -d ${{ parameters.destDirectory }}

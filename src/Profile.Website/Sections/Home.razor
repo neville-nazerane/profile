@@ -1,17 +1,27 @@
-﻿<!-- Hero Section -->
+﻿<!-- Home Section -->
 <section id="hero" class="hero section">
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row align-items-center content">
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                <h2>Crafting Digital Experiences with Passion</h2>
-                <p class="lead">Transforming ideas into elegant solutions through creative design and innovative development</p>
+                <h2>.NET Developer</h2>
+                <p class="lead">
+                    Enthusiastic developer in web & mobile applicaitons and devops
+                </p>
                 <div class="cta-buttons" data-aos="fade-up" data-aos-delay="300">
-                    <a href="#portfolio" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Let's Connect</a>
+                    <a href="https://github.com/neville-nazerane" class="btn btn-primary">View My Git</a>
+                    <a href="https://docs.nevillenazerane.com" class="btn btn-outline">My Documentation</a>
                 </div>
                 <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                    @foreach (var stat in experenceStats)
+                    {
+                        <div class="stat-item">
+                            <span class="stat-number">@stat.YearsUntilNow+</span>
+                            <span class="stat-label">@stat.Label</span>
+                        </div>
+                    }
+                    @*                     
                     <div class="stat-item">
                         <span class="stat-number">5+</span>
                         <span class="stat-label">Years Experience</span>
@@ -23,7 +33,7 @@
                     <div class="stat-item">
                         <span class="stat-number">50+</span>
                         <span class="stat-label">Happy Clients</span>
-                    </div>
+                    </div> *@
                 </div>
             </div>
             <div class="col-lg-6">

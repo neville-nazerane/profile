@@ -1,9 +1,306 @@
 ﻿@page "/"
 
-<Home />
 
-<About />
+<header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-<Skills />
+        <a href="#" class="logo d-flex align-items-center me-auto me-xl-0">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="template/img/logo.webp" alt=""> -->
+            <h1 class="sitename">Neville Nazerane</h1>
+        </a>
 
-<Resume />
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#resume">Resume</a></li>
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+        <div class="header-social-links">
+            @foreach (var social in Socials)
+            {
+                <a href="@social.Url" class="@social.Class" target="_blank"><i class="bi @social.Icon"></i></a>
+            }
+        </div>
+
+    </div>
+</header>
+
+<main class="main">
+
+    <!-- Home Section -->
+    <section id="hero" class="hero section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row align-items-center content">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <h2>.NET Developer</h2>
+                    <p class="lead">
+                        Enthusiastic developer in web & mobile applicaitons and devops
+                    </p>
+                    <div class="cta-buttons" data-aos="fade-up" data-aos-delay="300">
+                        <a href="https://github.com/neville-nazerane" class="btn btn-primary">View My Git</a>
+                        <a href="https://docs.nevillenazerane.com" class="btn btn-outline">My Documentation</a>
+                    </div>
+                    <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                        @foreach (var stat in experenceStats)
+                        {
+                            <div class="stat-item">
+                                <span class="stat-number">@stat.YearsUntilNow+</span>
+                                <span class="stat-label">@stat.Label</span>
+                            </div>
+                        }
+                        @*                     
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div> *@
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <img src="template/img/profile/profile-1.webp" alt="Portfolio Hero Image" class="img-fluid" data-aos="zoom-out" data-aos-delay="300">
+                        <div class="shape-1"></div>
+                        <div class="shape-2"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section><!-- /Hero Section -->
+    <!-- About Section -->
+    <section id="about" class="about section light-background">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>About</h2>
+            <div class="title-shape">
+                <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+            </div>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row align-items-center">
+
+                <div data-aos="fade-left" data-aos-delay="300">
+                    <div class="about-content">
+
+                        <h2>.NET Fullstack developer</h2>
+
+                        <p class="lead mb-4">Comes in like a wreaking ball.</p>
+
+                        <p class="mb-4">And then says lol and lol</p>
+
+                        <div class="personal-info">
+                            <div class="row g-4">
+                                <div class="col-6">
+                                    <div class="info-item">
+                                        <span class="label">Name</span>
+                                        <span class="value">Neville Nazerane</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="info-item">
+                                        <span class="label">Email</span>
+                                        <span class="value">nevillenazerane@yahoo.com</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="info-item">
+                                        <span class="label">Occupation</span>
+                                        <span class="value">.NET Developer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section><!-- /About Section -->
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row g-4 skills-animation">
+
+                @for (int i = 0; i < skills.Count(); i++)
+                {
+                    var skill = skills.ElementAt(i);
+
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="skill-box">
+                            <h3>@skill.Title</h3>
+                            <p>@skill.Description</p>
+                            <span class="text-end d-block">@skill.Precentage%</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="@skill.Precentage" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+
+    </section><!-- /Skills Section -->
+    <!-- Resume Section -->
+    <section id="resume" class="resume section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Resume</h2>
+            <div class="title-shape">
+                <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+            </div>
+            <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum qui dolorem</p>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="resume-wrapper">
+                        <div class="resume-block" data-aos="fade-up">
+                            <h2>Work Experience</h2>
+                            <p class="lead">Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet adipiscing sem neque sed ipsum.</p>
+
+                            <div class="timeline">
+                                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="timeline-left">
+                                        <h4 class="company">Etiam Industries</h4>
+                                        <span class="period">Jun, 2023 - Current</span>
+                                    </div>
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-right">
+                                        <h3 class="position">Project Lead</h3>
+                                        <p class="description">Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="timeline-left">
+                                        <h4 class="company">Nullam Corp</h4>
+                                        <span class="period">2019 - 2023</span>
+                                    </div>
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-right">
+                                        <h3 class="position">Senior graphic design specialist</h3>
+                                        <p class="description">
+                                            Curabitur ullamcorper ultricies nisi nam eget dui etiam rhoncus maecenas tempus.
+                                        </p>
+                                        <ul>
+                                            <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
+                                            <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
+                                            <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
+                                            <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
+                                        </ul>
+                                        <p></p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="timeline-left">
+                                        <h4 class="company">Stepping Stone Ltd.</h4>
+                                        <span class="period">2015-2019</span>
+                                    </div>
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-right">
+                                        <h3 class="position">Graphic design specialist</h3>
+                                        <p class="description">Curabitur ullamcorper ultricies nisi nam eget dui etiam rhoncus maecenas tempus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="resume-block" data-aos="fade-up" data-aos-delay="100">
+                            <h2>My Education</h2>
+                            <p class="lead">Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet adipiscing.</p>
+
+                            <div class="timeline">
+                                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="timeline-left">
+                                        <h4 class="company">Vestibulum University</h4>
+                                        <span class="period">2017-2019</span>
+                                    </div>
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-right">
+                                        <h3 class="position">Diploma in Consequat</h3>
+                                        <p class="description">Curabitur ullamcorper ultricies nisi nam eget dui etiam rhoncus maecenas tempus.</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="timeline-left">
+                                        <h4 class="company">Nullam Corp</h4>
+                                        <span class="period">2019 - 2023</span>
+                                    </div>
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-right">
+                                        <h3 class="position">Master of Fine Arts &amp; Graphic Design</h3>
+                                        <p class="description">Curabitur ullamcorper ultricies nisi nam eget dui etiam rhoncus maecenas tempus.</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="timeline-left">
+                                        <h4 class="company">Vestibulum University</h4>
+                                        <span class="period">2015-2019</span>
+                                    </div>
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-right">
+                                        <h3 class="position">Bachelor of Fine Arts &amp; Graphic Design</h3>
+                                        <p class="description">Curabitur ullamcorper ultricies nisi nam eget dui etiam rhoncus maecenas tempus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section><!-- /Resume Section -->
+</main>
+
+<footer id="footer" class="footer">
+
+    <div class="container">
+        <div class="social-links d-flex justify-content-center">
+            @foreach (var social in Socials)
+            {
+                <a href="@social.Url" target="_blank"><i class="bi @social.Icon"></i></a>
+            }
+        </div>
+    </div>
+
+</footer>
+

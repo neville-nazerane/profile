@@ -6,22 +6,33 @@
 * License: https://bootstrapmade.com/license/
 */
 
-(function () {
-    "use strict";
-
-    /**
-     * Apply .scrolled class to the body as the page is scrolled down
-     */
-    function toggleScrolled() {
-        return; // TODO uncomment?
-        const selectBody = document.querySelector('body');
-        const selectHeader = document.querySelector('#header');
-        if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-        window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
-    }
-
+function runPostRender() {
     document.addEventListener('scroll', toggleScrolled);
     window.addEventListener('load', toggleScrolled);
+
+    /**
+    * Animate the skills items on reveal
+    */
+    let skillsAnimation = document.querySelectorAll('.skills-animation');
+    skillsAnimation.forEach((item) => {
+        new Waypoint({
+            element: item,
+            offset: '80%',
+            handler: function (direction) {
+                let progress = item.querySelectorAll('.progress .progress-bar');
+                progress.forEach(el => {
+                    el.style.width = el.getAttribute('aria-valuenow') + '%';
+                });
+            }
+        });
+    });
+
+}
+
+function initRun() {
+    "use strict";
+
+
 
     /**
      * Mobile nav toggle
@@ -95,22 +106,6 @@
     }
     window.addEventListener('load', aosInit);
 
-    /**
-     * Animate the skills items on reveal
-     */
-    let skillsAnimation = document.querySelectorAll('.skills-animation');
-    skillsAnimation.forEach((item) => {
-        new Waypoint({
-            element: item,
-            offset: '80%',
-            handler: function (direction) {
-                let progress = item.querySelectorAll('.progress .progress-bar');
-                progress.forEach(el => {
-                    el.style.width = el.getAttribute('aria-valuenow') + '%';
-                });
-            }
-        });
-    });
 
     /**
      * Initiate glightbox
@@ -220,4 +215,15 @@
     window.addEventListener('load', navmenuScrollspy);
     document.addEventListener('scroll', navmenuScrollspy);
 
-})();
+}
+
+
+/**
+* Apply .scrolled class to the body as the page is scrolled down
+*/
+function toggleScrolled() {
+    const selectBody = document.querySelector('body');
+    const selectHeader = document.querySelector('#header');
+    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
+    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+}

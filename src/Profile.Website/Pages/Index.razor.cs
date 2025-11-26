@@ -1,8 +1,9 @@
-﻿using Profile.Website.Models;
+﻿using Microsoft.JSInterop;
+using Profile.Website.Models;
 
 namespace Profile.Website.Pages
 {
-    public partial class Index
+    public partial class Index(IJSRuntime js)
     {
 
         static readonly IEnumerable<ExperenceStat> experenceStats = [
@@ -39,7 +40,7 @@ namespace Profile.Website.Pages
                 }
             ];
 
-        public static readonly IEnumerable<SkillInfo> skills = [
+        static readonly IEnumerable<SkillInfo> skills = [
 
             new()
             {
@@ -61,6 +62,14 @@ namespace Profile.Website.Pages
             }
             
         ];
+        
+        private readonly IJSRuntime _js = js;
 
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await _js.InvokeVoidAsync("window.loaded");
+            await base.OnAfterRenderAsync(firstRender);
+        }
     }
 }

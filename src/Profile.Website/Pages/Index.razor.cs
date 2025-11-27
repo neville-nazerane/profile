@@ -1,5 +1,5 @@
 ﻿using Microsoft.JSInterop;
-using Profile.Website.Models;
+using Profile.Models;
 
 namespace Profile.Website.Pages
 {

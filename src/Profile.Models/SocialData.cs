@@ -1,4 +1,4 @@
-﻿namespace Profile.Website.Models
+﻿namespace Profile.Models
 {
     public class SocialData
     {

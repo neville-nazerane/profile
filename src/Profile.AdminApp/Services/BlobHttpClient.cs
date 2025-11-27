@@ -54,8 +54,35 @@ namespace Profile.AdminApp.Services
             }
         }
 
+        public static async Task<IEnumerable<TModel>?> GetEnumerableAsync<TModel>(string blobName, bool createIfNotExist = true)
+            where TModel : class
+        {
+            try
+            {
+                var url = await ConstructUrlAsync(blobName);
+                if (url is null) return null;
+                using var res = await client.GetAsync(url);
+                res.EnsureSuccessStatusCode();
+                using var stream = await res.Content.ReadAsStreamAsync();
+                var result = await JsonSerializer.DeserializeAsync<IEnumerable<TModel>>(stream);
+
+                if (result is null && createIfNotExist)
+                {
+                    result = [];
+                    await SetAsync(blobName, result);
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                await MauiUtils.DisplayErrorAsync($"Failed to fetch {blobName}. \n {ex}");
+                return null;
+            }
+        }
+
         public static async Task SetAsync<TModel>(string blobName, TModel model)
-            where TModel : class, new()
+            where TModel : class
         {
             try
             {

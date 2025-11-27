@@ -16,4 +16,8 @@
     <Folder Include="wwwroot\template\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Profile.Models\Profile.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -27,7 +27,7 @@ namespace Profile.AdminApp.Services
             return fullUrl;
         }
 
-        public static async Task<TModel?> GetAsync<TModel>(string blobName)
+        public static async Task<TModel?> GetAsync<TModel>(string blobName, bool createIfNotExist = true)
             where TModel : class, new()
         {
             try
@@ -37,7 +37,15 @@ namespace Profile.AdminApp.Services
                 using var res = await client.GetAsync(url);
                 res.EnsureSuccessStatusCode();
                 using var stream = await res.Content.ReadAsStreamAsync();
-                return await JsonSerializer.DeserializeAsync<TModel>(stream);
+                var result = await JsonSerializer.DeserializeAsync<TModel>(stream);
+
+                if (result is null && createIfNotExist)
+                {
+                    result = new();
+                    await SetAsync(blobName, result);
+                }
+
+                return result;  
             }
             catch (Exception ex)
             {

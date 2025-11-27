@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Profile.AdminApp.Pages.SettingsPage"
+             Title="Settings">
+
+    <Grid RowDefinitions="50, *, 50"
+          Padding="20">
+
+        <!--Form-->
+        <Grid Grid.Row="1"
+              RowDefinitions="40, 30">
+
+            <Label Text="Contaier Key" 
+                   FontSize="Medium"
+                   FontAttributes="Bold" />
+
+            <Entry Grid.Row="1"
+                   IsPassword="True" />
+
+        </Grid>
+
+
+        <Button Grid.Row="2"
+                Text="Save" />
+    </Grid>
+    
+</ContentPage>

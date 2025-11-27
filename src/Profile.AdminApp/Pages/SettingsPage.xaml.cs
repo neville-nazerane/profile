@@ -5,7 +5,7 @@ namespace Profile.AdminApp.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-    private SettingsViewModel _viewModel;
+    private readonly SettingsViewModel _viewModel;
 
     public SettingsPage()
 	{

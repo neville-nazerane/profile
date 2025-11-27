@@ -7,7 +7,7 @@
              Title="Settings">
 
     <Grid RowDefinitions="50, *, 50"
-          Padding="20">
+          Padding="{OnIdiom Desktop=120, Default=20}">
 
         <!--Form-->
         <Grid Grid.Row="1"
@@ -24,9 +24,12 @@
         </Grid>
 
 
-        <Button Grid.Row="2"
-                Command="{Binding SaveCommand}"
-                Text="Save" />
+        <Grid Grid.Row="2"
+              ColumnDefinitions="{OnIdiom Desktop='*, 200, *', Default='10, *, 10'}">
+            <Button Grid.Column="1"
+                    Command="{Binding SaveCommand}"
+                    Text="Save" />
+        </Grid>
     </Grid>
     
 </ContentPage>

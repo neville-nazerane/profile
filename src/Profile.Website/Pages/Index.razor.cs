@@ -26,6 +26,10 @@ namespace Profile.Website.Pages
             ];
 
         static readonly ICollection<SkillInfo> skills = [];
+
+        static readonly ICollection<ResumeItem> workItems = [];
+
+        static readonly ICollection<ResumeItem> educationItems = [];
         
         private readonly IJSRuntime _js = js;
         private readonly DataService _dataService = dataService;
@@ -42,6 +46,18 @@ namespace Profile.Website.Pages
             {
                 if (skill is not null)
                     skills.Add(skill);
+            }
+
+            await foreach (var work in _dataService.GetWorkResumeItemsAsync())
+            {
+                if (work is not null)
+                    workItems.Add(work);
+            }
+
+            await foreach (var education in _dataService.GetEducationResumeItemsAsync())
+            {
+                if (education is not null)
+                    educationItems.Add(education);
             }
 
             await base.OnInitializedAsync();

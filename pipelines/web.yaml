@@ -39,28 +39,6 @@ parameters:
     identifier: profile
     name: kestrel-profile
 
-    
-variables:
-  
-  - name: serviceTemplate
-    value:  |
-      [Unit]
-      Description=${{ parameters.service.description }}
-
-      [Install]
-      WantedBy=multi-user.target
-
-      [Service]
-      WorkingDirectory=${{ parameters.destDirectory }}
-      ExecStart=/usr/bin/dotnet ${{ parameters.destDirectory }}/${{ parameters.projectName }}.dll --urls ${{ parameters.url }}
-      Restart=always
-      # Restart service after 10 seconds if the dotnet service crashes:
-      RestartSec=10
-      KillSignal=SIGINT
-      SyslogIdentifier=${{ parameters.service.identifier }}
-      User=root
-
-
 
 stages:
   - stage: CI
@@ -100,20 +78,10 @@ stages:
                   artifact: published
 
                 - script: |
-                    echo "$(serviceTemplate)" > $(Pipeline.Workspace)/published/linux.service
-                  displayName: Generate service file
-
-                - script: |
                     sudo rm -rf ${{ parameters.destDirectory }}
                     sudo mkdir -p ${{ parameters.destDirectory }}
                     sudo tar -xzf ${{ parameters.projectName }}.tar.gz -C ${{ parameters.destDirectory }}
 
-                    sudo mv linux.service /etc/systemd/system/${{ parameters.service.name }}.service -f
-
-                    sudo systemctl enable ${{ parameters.service.name }}.service 
-                    sudo systemctl stop ${{ parameters.service.name }}.service 
-                    sudo systemctl start ${{ parameters.service.name }}.service
-  
                     rm -rf *
                   displayName: Updating website
                   workingDirectory: $(Pipeline.Workspace)/published

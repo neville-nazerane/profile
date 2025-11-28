@@ -13,6 +13,11 @@
         Route="settings" />
 
     <ShellContent
+        Title="Personal Info"
+        ContentTemplate="{DataTemplate pages:PersonalInfoPage}"
+        Route="personalInfo" />
+
+    <ShellContent
         Title="Experience"
         ContentTemplate="{DataTemplate pages:ExperienceStatsPage}"
         Route="experience" />

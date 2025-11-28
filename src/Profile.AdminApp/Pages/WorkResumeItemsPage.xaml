@@ -25,11 +25,10 @@
 
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="m:ResumeItemModel">
-                <Grid RowDefinitions="*, *, *, *, *, 45">
+                <Grid RowDefinitions="*, *, *, *, 45">
 
-                    <comp:LabeledEntry
-                                LabelText="Title"
-                                EntryText="{Binding Title}" />
+                    <comp:LabeledEntry LabelText="Title"
+                                       EntryText="{Binding Title}" />
 
                     <comp:LabeledEntry Grid.Row="1"
                                        LabelText="Location"
@@ -41,13 +40,9 @@
 
                     <comp:LabeledEntry Grid.Row="3"
                                        LabelText="From"
-                                       EntryText="{Binding From}" />
+                                       EntryText="{Binding TimeLine}" />
 
-                    <comp:LabeledEntry Grid.Row="4"
-                                       LabelText="To"
-                                       EntryText="{Binding To}" />
-
-                    <Grid Grid.Row="5"
+                    <Grid Grid.Row="4"
                           ColumnDefinitions="*, *">
 
                         <Button Text="Delete"
@@ -66,7 +61,7 @@
             <DataTemplate x:DataType="m:ResumeItemModel">
                 <Grid ColumnDefinitions="{OnIdiom Desktop='*, *, *', Default='0, 0, *'}">
                     <Grid Grid.Column="2"
-                          RowDefinitions="*, *, *, *, *, 45">
+                          RowDefinitions="*, *, *, *, 45">
 
                         <comp:LabeledEntry
                                     LabelText="Title"
@@ -81,14 +76,10 @@
                                            EntryText="{Binding Description}" />
 
                         <comp:LabeledEntry Grid.Row="3"
-                                           LabelText="From"
-                                           EntryText="{Binding From}" />
+                                           LabelText="TimeLine"
+                                           EntryText="{Binding TimeLine}" />
 
-                        <comp:LabeledEntry Grid.Row="4"
-                                           LabelText="To"
-                                           EntryText="{Binding To}" />         
-
-                        <Grid Grid.Row="5"
+                        <Grid Grid.Row="4"
                                ColumnDefinitions="*, *">
 
                             <Button Text="Clear"

@@ -16,18 +16,14 @@ namespace Profile.AdminApp.Models
         public string? description;
 
         [ObservableProperty]
-        public string? from;
-
-        [ObservableProperty]
-        public string? to;
+        public string? timeLine;
 
         public void FromModel(ResumeItem model)
         {
             Title = model.Title;
             Location = model.Location;
             Description = model.Description;
-            From = model.From;
-            To = model.To;
+            TimeLine = model.TimeLine;
         }
 
         public ResumeItem ToModel()
@@ -35,16 +31,17 @@ namespace Profile.AdminApp.Models
             ArgumentNullException.ThrowIfNull(Title);
             ArgumentNullException.ThrowIfNull(Location);
             ArgumentNullException.ThrowIfNull(Description);
+            ArgumentNullException.ThrowIfNull(TimeLine);
 
             return new ResumeItem
             {
                 Title = Title,
                 Location = Location,
                 Description = Description,
-                From = From,
-                To = To
+                TimeLine = TimeLine
             };
         }
     }
+
 
 }

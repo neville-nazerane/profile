@@ -13,10 +13,7 @@ namespace Profile.Models
 
         public required string Description { get; set; }
 
-        public string? From { get; set; }
-
-        public string? To { get; set; }
-
+        public required string TimeLine { get; set; }
 
     }
 }

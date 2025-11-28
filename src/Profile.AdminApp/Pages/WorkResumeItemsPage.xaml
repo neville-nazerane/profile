@@ -12,8 +12,9 @@
     </ContentPage.ToolbarItems>
 
     <CollectionView ItemsSource="{Binding Items}"
-                   Footer="{Binding ToAdd}"
-                   Margin="{OnIdiom Desktop=30, Phone=10}">
+                    Footer="{Binding ToAdd}"
+                    CanReorderItems="True"
+                    Margin="{OnIdiom Desktop=30, Phone=10}">
 
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical"

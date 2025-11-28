@@ -1,6 +1,7 @@
 ﻿using Profile.AdminApp.Utils;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 
@@ -27,48 +28,28 @@ namespace Profile.AdminApp.Services
             return fullUrl;
         }
 
-        public static async Task<TModel?> GetAsync<TModel>(string blobName, bool createIfNotExist = true)
-            where TModel : class, new()
+        public static async Task<TModel?> GetInternalAsync<TModel>(string blobName,
+                                                                   Func<TModel> emptyFactory,
+                                                                   bool createIfNotExist = true)
+                where TModel : class
         {
             try
             {
                 var url = await ConstructUrlAsync(blobName);
                 if (url is null) return null;
                 using var res = await client.GetAsync(url);
-                res.EnsureSuccessStatusCode();
-                using var stream = await res.Content.ReadAsStreamAsync();
-                var result = await JsonSerializer.DeserializeAsync<TModel>(stream);
+                TModel? result = null;
 
-                if (result is null && createIfNotExist)
+                if (res.StatusCode != HttpStatusCode.NotFound)
                 {
-                    result = new();
-                    await SetAsync(blobName, result);
+                    res.EnsureSuccessStatusCode();
+                    using var stream = await res.Content.ReadAsStreamAsync();
+                    result = await JsonSerializer.DeserializeAsync<TModel>(stream);
                 }
 
-                return result;  
-            }
-            catch (Exception ex)
-            {
-                await MauiUtils.DisplayErrorAsync($"Failed to fetch {blobName}. \n {ex}");
-                return null;
-            }
-        }
-
-        public static async Task<IEnumerable<TModel>?> GetEnumerableAsync<TModel>(string blobName, bool createIfNotExist = true)
-            where TModel : class
-        {
-            try
-            {
-                var url = await ConstructUrlAsync(blobName);
-                if (url is null) return null;
-                using var res = await client.GetAsync(url);
-                res.EnsureSuccessStatusCode();
-                using var stream = await res.Content.ReadAsStreamAsync();
-                var result = await JsonSerializer.DeserializeAsync<IEnumerable<TModel>>(stream);
-
                 if (result is null && createIfNotExist)
                 {
-                    result = [];
+                    result = emptyFactory();
                     await SetAsync(blobName, result);
                 }
 
@@ -80,6 +61,16 @@ namespace Profile.AdminApp.Services
                 return null;
             }
         }
+
+        public static Task<TModel?> GetAsync<TModel>(string blobName, bool createIfNotExist = true)
+            where TModel : class, new()
+            => GetInternalAsync(blobName, () => new TModel(), createIfNotExist);
+
+
+        public static Task<IEnumerable<TModel>?> GetEnumerableAsync<TModel>(string blobName, bool createIfNotExist = true)
+            where TModel : class
+            => GetInternalAsync<IEnumerable<TModel>>(blobName, () => [], createIfNotExist);
+
 
         public static async Task SetAsync<TModel>(string blobName, TModel model)
             where TModel : class
@@ -94,6 +85,7 @@ namespace Profile.AdminApp.Services
                 ms.Position = 0;
 
                 using var content = new StreamContent(ms);
+                content.Headers.Add("x-ms-blob-type", "BlockBlob");
                 using var res = await client.PutAsync(url, content);
                 res.EnsureSuccessStatusCode();
             }

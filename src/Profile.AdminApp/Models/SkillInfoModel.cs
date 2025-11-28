@@ -1,5 +1,4 @@
-﻿using Android.Health.Connect.DataTypes.Units;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Profile.AdminApp.Utils;
 using Profile.Models;
 using System;

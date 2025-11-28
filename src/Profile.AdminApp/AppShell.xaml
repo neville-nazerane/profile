@@ -12,4 +12,10 @@
         ContentTemplate="{DataTemplate pages:SettingsPage}"
         Route="settings" />
 
+    <ShellContent
+        Title="Experience"
+        ContentTemplate="{DataTemplate pages:ExperienceStatsPage}"
+        Route="experience" />
+
+
 </Shell>

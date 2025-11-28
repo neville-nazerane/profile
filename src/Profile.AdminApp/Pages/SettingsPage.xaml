@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Profile.AdminApp.ViewModels"
+             x:Class="Profile.AdminApp.Pages.SettingsPage"
+             x:DataType="vm:SettingsViewModel"
+             Title="Settings">
+
+    <Grid RowDefinitions="50, *, 50"
+          Padding="{OnIdiom Desktop=120, Default=20}">
+
+        <!--Form-->
+        <Grid Grid.Row="1"
+              RowDefinitions="40, 50">
+
+            <Label Text="Container Key" 
+                   FontSize="Medium"
+                   FontAttributes="Bold" />
+
+            <Entry Grid.Row="1"
+                   Text="{Binding Key}"
+                   IsPassword="True" />
+
+        </Grid>
+
+
+        <Grid Grid.Row="2"
+              ColumnDefinitions="{OnIdiom Desktop='*, 200, *', Default='10, *, 10'}">
+            <Button Grid.Column="1"
+                    Command="{Binding SaveCommand}"
+                    Text="Save" />
+        </Grid>
+    </Grid>
+    
+</ContentPage>

@@ -1,0 +1,19 @@
+﻿@if (Items is not null)
+{
+    @for (int i = 0; i < Items.Count; i++)
+    {
+        var item = Items.ElementAt(i);
+
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="@((i + 1) * 100)">
+            <div class="timeline-left">
+                <h4 class="company">@item.Location</h4>
+                <span class="period">@item.TimeLine</span>
+            </div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-right">
+                <h3 class="position">@item.Title</h3>
+                <p class="description">@((MarkupString)item.Description)</p>
+            </div>
+        </div>
+    }
+}

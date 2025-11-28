@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neville Nazerane</title>
+    <base href="/" />
+    <link rel="preload" id="webassembly" />
+
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Questrial:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="template/css/main.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <script type="importmap"></script>
+</head>
+
+<body class="index-page">
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+
+    <script src="template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="template/vendor/php-email-form/validate.js"></script>
+    <script src="template/vendor/aos/aos.js"></script>
+    <script src="template/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="template/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="template/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="template/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="template/js/main.js"></script>
+
+    <script>
+
+        initRun();
+
+        window.loaded = function ()
+        {
+            runPostRender();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Profile.AdminApp.ViewModels"
+             xmlns:m="clr-namespace:Profile.AdminApp.Models"
+             xmlns:comp="clr-namespace:Profile.AdminApp.Components"
+             x:Class="Profile.AdminApp.Pages.EducationResumeItemPage"
+             x:DataType="vm:EducationResumeItemViewModel"
+             Title="Education Resume Item">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <CollectionView ItemsSource="{Binding Items}"
+                    Footer="{Binding ToAdd}"
+                    CanReorderItems="True"
+                    Margin="{OnIdiom Desktop=30, Phone=10}">
+
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical"
+                            HorizontalItemSpacing="30"
+                            VerticalItemSpacing="10"
+                            Span="{OnIdiom Desktop=3, Phone=1}" />
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="m:ResumeItemModel">
+                <Grid RowDefinitions="*, *, *, *, 45">
+
+                    <comp:LabeledEntry
+                                LabelText="Title"
+                                EntryText="{Binding Title}" />
+
+                    <comp:LabeledEntry Grid.Row="1"
+                                       LabelText="Location"
+                                       EntryText="{Binding Location}" />
+
+                    <comp:LabeledEntry Grid.Row="2"
+                                       LabelText="Description"
+                                       EntryText="{Binding Description}" />
+
+                    <comp:LabeledEntry Grid.Row="3"
+                                        LabelText="TimeLine"
+                                        EntryText="{Binding TimeLine}" />
+
+                    <Grid Grid.Row="5"
+                          ColumnDefinitions="*, *">
+
+                        <Button Text="Delete"
+                                BackgroundColor="{StaticResource Magenta}"
+                                Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type vm:EducationResumeItemViewModel}}}"
+                                CommandParameter="{Binding .}"/>
+
+                    </Grid>
+
+                </Grid>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+        <CollectionView.FooterTemplate>
+            <DataTemplate x:DataType="m:ResumeItemModel">
+                <Grid ColumnDefinitions="{OnIdiom Desktop='*, *, *', Default='0, 0, *'}">
+                    <Grid Grid.Column="2"
+                          RowDefinitions="*, *, *, *, 45">
+
+                        <comp:LabeledEntry
+                                    LabelText="Title"
+                                    EntryText="{Binding Title}" />
+
+                        <comp:LabeledEntry Grid.Row="1"
+                                           LabelText="Location"
+                                           EntryText="{Binding Location}" />
+
+                        <comp:LabeledEntry Grid.Row="2"
+                                           LabelText="Description"
+                                           EntryText="{Binding Description}" />
+
+                        <comp:LabeledEntry Grid.Row="3"
+                                        LabelText="TimeLine"
+                                        EntryText="{Binding TimeLine}" />
+
+                        <Grid Grid.Row="5"
+                               ColumnDefinitions="*, *">
+
+                            <Button Text="Clear"
+                                    BackgroundColor="{StaticResource Magenta}"
+                                    Command="{Binding ClearAddCommand, Source={RelativeSource AncestorType={x:Type vm:EducationResumeItemViewModel}}}" />
+
+                            <Button Grid.Column="1"
+                                    Text="Add"
+                                    Command="{Binding AddCommand, Source={RelativeSource AncestorType={x:Type vm:EducationResumeItemViewModel}}}" />
+
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+            </DataTemplate>
+        </CollectionView.FooterTemplate>
+
+    </CollectionView>
+</ContentPage>

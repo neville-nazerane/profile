@@ -11,5 +11,9 @@ namespace Profile.AdminApp.Utils
 
         public const string EXPERIENCE_STATS_FILE = "experience-stats";
 
+        public const string SKILL_INFO_FILE = "skill-info";
+
+        public const string SOCIAL_DATA_FILE = "social-data";
+
     }
 }

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Profile.AdminApp.ViewModels"
-             xmlns:m="clr-namespace:Profile.Models;assembly=Profile.Models"
+             xmlns:m="clr-namespace:Profile.AdminApp.Models"
+             xmlns:comp="clr-namespace:Profile.AdminApp.Components"
              x:Class="Profile.AdminApp.Pages.ExperienceStatsPage"
              x:DataType="vm:ExperienceStatsViewModel"
              Title="Experience Stats">
@@ -10,28 +11,62 @@
     <CollectionView ItemsSource="{Binding Items}"
                     Footer="{Binding ToAdd}">
 
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical"
+                             Span="{OnIdiom Desktop=3, Phone=1}" />
+        </CollectionView.ItemsLayout>
+
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="m:ExperenceStat">
-                <Grid RowDefinitions="30, 40, 60, 30, 40, 60">
+            <DataTemplate x:DataType="m:ExperenceStatModel">
+                <Grid RowDefinitions="*, *, 30">
 
-                    <Label Text="Label" />
-                    <Entry Grid.Row="1"
-                           Text="{Binding Label}" />
+                    <comp:LabeledEntry LabelText="Label"
+                                       EntryText="{Binding Label}"/>
 
-                    <Label Grid.Row="3"
-                           Text="Year Started" />
-                    <Entry Grid.Row="4"
-                           Text="{Binding YearStarted}"
-                           Keyboard="Numeric" />
+                    <comp:LabeledEntry Grid.Row="1"
+                                       LabelText="Year Started"
+                                       EntryText="{Binding YearStarted}" />
 
+                    <Grid Grid.Row="2"
+                          ColumnDefinitions="*, *">
 
+                        <Button Text="Delete"
+                                BackgroundColor="{StaticResource Magenta}"
+                                Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type vm:ExperienceStatsViewModel}}}"
+                                CommandParameter="{Binding .}"/>
+                        <Button Grid.Column="1"
+                                Text="Save"
+                                Command="{Binding SaveCommand, Source={RelativeSource AncestorType={x:Type vm:ExperienceStatsViewModel}}}" />
+                    </Grid>
+                    
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
 
         <CollectionView.FooterTemplate>
-            <DataTemplate x:DataType="m:ExperenceStat">
+            <DataTemplate x:DataType="m:ExperenceStatModel">
+                <Grid RowDefinitions="*, *, 30">
 
+                    <comp:LabeledEntry LabelText="Label"
+                                       EntryText="{Binding Label}"/>
+
+                    <comp:LabeledEntry Grid.Row="1"
+                                       LabelText="Year Started"
+                                       EntryText="{Binding YearStarted}" />
+
+                    <Grid Grid.Row="2"
+                          ColumnDefinitions="*, *">
+
+                        <Button Text="Clear" 
+                                BackgroundColor="{StaticResource Magenta}"
+                                Command="{Binding ClearAddCommand, Source={RelativeSource AncestorType={x:Type vm:ExperienceStatsViewModel}}}"/>
+                        <Button Grid.Column="1"
+                                Text="Add"
+                                Command="{Binding AddCommand, Source={RelativeSource AncestorType={x:Type vm:ExperienceStatsViewModel}}}" />
+
+                    </Grid>
+
+                </Grid>
             </DataTemplate>
         </CollectionView.FooterTemplate>
         

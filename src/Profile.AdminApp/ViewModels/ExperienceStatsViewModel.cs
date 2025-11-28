@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Profile.AdminApp.Models;
 using Profile.AdminApp.Services;
 using Profile.AdminApp.Utils;
 using Profile.Models;
@@ -11,39 +12,48 @@ namespace Profile.AdminApp.ViewModels
     {
 
         [ObservableProperty]
-        ObservableCollection<ExperenceStat>? items;
+        ObservableCollection<ExperenceStatModel>? items;
 
         [ObservableProperty]
-        ExperenceStat? toAdd;
+        ExperenceStatModel? toAdd;
 
         public async Task InitAsync()
         {
             var res = await BlobHttpClient.GetEnumerableAsync<ExperenceStat>(Constants.EXPERIENCE_STATS_FILE);
             if (res is not null)
-                Items = new(res);
+            {
+                var data = res.Select(m =>
+                {
+                    var d = new ExperenceStatModel();
+                    d.FromModel(m);
+                    return d;
+                }).ToList();
 
-            ToAdd = GetFresh();
+                Items = new(data);
+            }
+
+            ToAdd = new();
         }
 
-        ExperenceStat GetFresh() => new()
-        {
-            Label = "Years",
-            YearStarted = DateTime.Now.Year,
-        };
-
         [RelayCommand]
-        public async Task AddAsync()
+        async Task AddAsync()
         {
             if(Items is null || ToAdd is null) return;
 
             Items.Add(ToAdd);
             await SaveAsync();
 
-            ToAdd = GetFresh();
+            ToAdd = new();
         }
 
         [RelayCommand]
-        public async Task DeleteAsync(ExperenceStat item)
+        void ClearAdd()
+        {
+            ToAdd = new();
+        }
+
+        [RelayCommand]
+        async Task DeleteAsync(ExperenceStatModel item)
         {
             if (Items is null) return;
 
@@ -52,7 +62,12 @@ namespace Profile.AdminApp.ViewModels
         }
 
         [RelayCommand]
-        Task SaveAsync() => BlobHttpClient.SetAsync(Constants.EXPERIENCE_STATS_FILE, Items?.ToArray() ?? []);
-
+        Task SaveAsync()
+        {
+            if (Items is null) return Task.CompletedTask;
+            var data = Items.Select(i => i.ToModel()).ToList();
+            return BlobHttpClient.SetAsync(Constants.EXPERIENCE_STATS_FILE, data);
+        }
+    
     }
 }

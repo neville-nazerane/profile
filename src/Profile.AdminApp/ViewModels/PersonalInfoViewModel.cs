@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Profile.AdminApp.ViewModels
 {
-    public partial class PersonalInfoViewModel() : CrudViewModelBase<PersonalInfo, PersonalInfoModel>(Constants.PUBLIC_INFO_FILE)
+    public partial class PersonalInfoViewModel() : CrudViewModelBase<PersonalInfo, PersonalInfoModel>(Constants.PERSONAL_INFO_FILE)
     {
     }
 }

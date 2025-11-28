@@ -7,7 +7,6 @@ namespace Profile.Website.Pages
     public partial class Index(IJSRuntime js, DataService dataService)
     {
 
-        static readonly ICollection<ExperenceStat> experenceStats = [];
 
         static readonly IEnumerable<SocialData> Socials =
             [
@@ -25,17 +24,29 @@ namespace Profile.Website.Pages
                 }
             ];
 
+        static readonly ICollection<ExperenceStat> experenceStats = [];
+
+        static readonly ICollection<PersonalInfo> personalInfo = [];
+
         static readonly ICollection<SkillInfo> skills = [];
 
         static readonly ICollection<ResumeItem> workItems = [];
 
         static readonly ICollection<ResumeItem> educationItems = [];
-        
+
         private readonly IJSRuntime _js = js;
         private readonly DataService _dataService = dataService;
 
         protected override async Task OnInitializedAsync()
         {
+
+            await foreach (var info in _dataService.GetPersonalInfoAsync())
+            {
+                if (info is not null)
+                    personalInfo.Add(info);
+            }
+
+
             await foreach (var exp in _dataService.GetExperienceStatsAsync())
             {
                 if (exp is not null)

@@ -19,6 +19,9 @@ namespace Profile.Website.Services
         public IAsyncEnumerable<ResumeItem?> GetEducationResumeItemsAsync()
             => GetDataAsync<ResumeItem>(Constants.EDUCATION_RESUME_ITEM_FILE);
 
+        public IAsyncEnumerable<PersonalInfo?> GetPersonalInfoAsync()
+            => GetDataAsync<PersonalInfo>(Constants.PERSONAL_INFO_FILE);
+
         IAsyncEnumerable<TModel?> GetDataAsync<TModel>(string fileName)
             => _httpClient.GetFromJsonAsAsyncEnumerable<TModel>(
                                 $"{Constants.CONTAINER_NAME}/{fileName}?cache={Guid.NewGuid()}");

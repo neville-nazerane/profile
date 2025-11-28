@@ -76,7 +76,7 @@ namespace Profile.AdminApp.Utils
         {
             if (Items is null) return Task.CompletedTask;
             var data = Items.Select(i => i.ToModel()).ToList();
-            return BlobHttpClient.SetAsync(Constants.EXPERIENCE_STATS_FILE, data);
+            return BlobHttpClient.SetAsync(_fileName, data);
         }
 
     }

@@ -17,5 +17,11 @@
         ContentTemplate="{DataTemplate pages:ExperienceStatsPage}"
         Route="experience" />
 
+    <ShellContent
+        Title="Skill Info"
+        ContentTemplate="{DataTemplate pages:SkillInfoPage}"
+        Route="skillinfo" />
+
+
 
 </Shell>

@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace Profile.AdminApp.Components;
 
 public partial class LabeledEntry : Grid
@@ -27,6 +29,13 @@ public partial class LabeledEntry : Grid
     {
         get => (string)GetValue(EntryTextProperty);
         set => SetValue(EntryTextProperty, value);
+    }
+
+    [TypeConverter(typeof(Microsoft.Maui.Converters.KeyboardTypeConverter))]
+    public Keyboard Keyboard
+    {
+        get => entry.Keyboard;
+        set => entry.Keyboard = value;
     }
 
     public LabeledEntry()

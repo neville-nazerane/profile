@@ -80,8 +80,15 @@ namespace Profile.AdminApp.Utils
         Task SaveAsync()
         {
             if (Items is null) return Task.CompletedTask;
-            var data = Items.Select(i => i.ToModel()).ToList();
-            return BlobHttpClient.SetAsync(_fileName, data);
+            try
+            {
+                var data = Items.Select(i => i.ToModel()).ToList();
+                return BlobHttpClient.SetAsync(_fileName, data);
+            }
+            catch (Exception ex)
+            {
+                return MauiUtils.DisplayErrorAsync("Failed saving. " + ex);
+            }
         }
 
     }

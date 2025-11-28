@@ -22,6 +22,9 @@
         ContentTemplate="{DataTemplate pages:SkillInfoPage}"
         Route="skillinfo" />
 
-
+    <ShellContent
+        Title="Resume Items"
+        ContentTemplate="{DataTemplate pages:ResumeItemsPage}"
+        Route="resume" />
 
 </Shell>

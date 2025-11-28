@@ -15,5 +15,7 @@ namespace Profile.AdminApp.Utils
 
         public const string SOCIAL_DATA_FILE = "social-data";
 
+        public const string RESUME_ITEM_FILE = "resume-item";
+
     }
 }

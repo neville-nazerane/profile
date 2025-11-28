@@ -21,5 +21,9 @@ namespace Profile.Models
 
         public const string EDUCATION_RESUME_ITEM_FILE = "education-resume-item";
 
+        public const string PUBLIC_INFO_FILE = "public-info";
+
+
+
     }
 }

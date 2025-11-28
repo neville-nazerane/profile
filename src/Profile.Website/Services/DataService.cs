@@ -8,12 +8,17 @@ namespace Profile.Website.Services
         private readonly HttpClient _httpClient = httpClient;
 
         public IAsyncEnumerable<ExperenceStat?> GetExperienceStatsAsync()
-            => _httpClient.GetFromJsonAsAsyncEnumerable<ExperenceStat>(
-                                            $"profile-data/experience-stats?cache={Guid.NewGuid()}");
+            => GetDataAsync<ExperenceStat>(Constants.EXPERIENCE_STATS_FILE);
 
         public IAsyncEnumerable<SkillInfo?> GetSkillInfoAsync()
-            => _httpClient.GetFromJsonAsAsyncEnumerable<SkillInfo>(
-                                            $"profile-data/skill-info?cache={Guid.NewGuid()}");
+            => GetDataAsync<SkillInfo>(Constants.SKILL_INFO_FILE);
+
+        public IAsyncEnumerable<ResumeItem?> GetResumeItemsAsync()
+            => GetDataAsync<ResumeItem>(Constants.RESUME_ITEM_FILE);
+
+        IAsyncEnumerable<TModel?> GetDataAsync<TModel>(string fileName)
+            => _httpClient.GetFromJsonAsAsyncEnumerable<TModel>(
+                                $"{Constants.CONTAINER_NAME}/{fileName}?cache={Guid.NewGuid()}");
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Profile.AdminApp.Utils;
+using Profile.Models;
 using System;
 using System.Collections.Generic;
 using System.Net;

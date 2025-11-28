@@ -17,7 +17,9 @@ namespace Profile.Models
 
         public const string SOCIAL_DATA_FILE = "social-data";
 
-        public const string RESUME_ITEM_FILE = "resume-item";
+        public const string WORK_RESUME_ITEM_FILE = "work-resume-item";
+
+        public const string EDUCATION_RESUME_ITEM_FILE = "education-resume-item";
 
     }
 }

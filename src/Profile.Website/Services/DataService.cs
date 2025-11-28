@@ -13,8 +13,11 @@ namespace Profile.Website.Services
         public IAsyncEnumerable<SkillInfo?> GetSkillInfoAsync()
             => GetDataAsync<SkillInfo>(Constants.SKILL_INFO_FILE);
 
-        public IAsyncEnumerable<ResumeItem?> GetResumeItemsAsync()
-            => GetDataAsync<ResumeItem>(Constants.RESUME_ITEM_FILE);
+        public IAsyncEnumerable<ResumeItem?> GetWorkResumeItemsAsync()
+            => GetDataAsync<ResumeItem>(Constants.WORK_RESUME_ITEM_FILE);
+
+        public IAsyncEnumerable<ResumeItem?> GetEducationResumeItemsAsync()
+            => GetDataAsync<ResumeItem>(Constants.EDUCATION_RESUME_ITEM_FILE);
 
         IAsyncEnumerable<TModel?> GetDataAsync<TModel>(string fileName)
             => _httpClient.GetFromJsonAsAsyncEnumerable<TModel>(

@@ -70,13 +70,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\WorkResumeItemsPage.xaml.cs">
+	    <DependentUpon>WorkResumeItemsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Components\LabeledEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\EducationResumeItemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\ExperienceStatsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ResumeItemsPage.xaml">
+	  <MauiXaml Update="Pages\WorkResumeItemsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SettingsPage.xaml">

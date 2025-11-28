@@ -23,8 +23,13 @@
         Route="skillinfo" />
 
     <ShellContent
-        Title="Resume Items"
-        ContentTemplate="{DataTemplate pages:ResumeItemsPage}"
-        Route="resume" />
+        Title="Work Resume"
+        ContentTemplate="{DataTemplate pages:WorkResumeItemsPage}"
+        Route="resumeWork" />
+
+    <ShellContent
+        Title="Education Resume"
+        ContentTemplate="{DataTemplate pages:EducationResumeItemPage}"
+        Route="resumeEducation" />
 
 </Shell>

@@ -2,13 +2,13 @@ using Profile.AdminApp.ViewModels;
 
 namespace Profile.AdminApp.Pages;
 
-public partial class ResumeItemsPage : ContentPage
+public partial class WorkResumeItemsPage : ContentPage
 {
-    private readonly ResumeItemViewModel _viewModel;
+    private readonly WorkResumeItemViewModel _viewModel;
 
-    public ResumeItemsPage()
+    public WorkResumeItemsPage()
     {
-        BindingContext = _viewModel = new ResumeItemViewModel();
+        BindingContext = _viewModel = new WorkResumeItemViewModel();
         InitializeComponent();
     }
 

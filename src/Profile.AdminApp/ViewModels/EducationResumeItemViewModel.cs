@@ -7,8 +7,7 @@ using System.Text;
 
 namespace Profile.AdminApp.ViewModels
 {
-    public partial class ResumeItemViewModel() : CrudViewModelBase<ResumeItem, ResumeItemModel>(Constants.RESUME_ITEM_FILE)
+    public class EducationResumeItemViewModel() : CrudViewModelBase<ResumeItem, ResumeItemModel>(Constants.EDUCATION_RESUME_ITEM_FILE)
     {
-
     }
 }

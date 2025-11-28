@@ -4,9 +4,9 @@
              xmlns:vm="clr-namespace:Profile.AdminApp.ViewModels"
              xmlns:m="clr-namespace:Profile.AdminApp.Models"
              xmlns:comp="clr-namespace:Profile.AdminApp.Components"
-             x:Class="Profile.AdminApp.Pages.ResumeItemsPage"
-             x:DataType="vm:ResumeItemViewModel"
-             Title="ResumeItemsPage">
+             x:Class="Profile.AdminApp.Pages.EducationResumeItemPage"
+             x:DataType="vm:EducationResumeItemViewModel"
+             Title="Education Resume Item">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
     </ContentPage.ToolbarItems>
@@ -51,7 +51,7 @@
 
                         <Button Text="Delete"
                                 BackgroundColor="{StaticResource Magenta}"
-                                Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type vm:ResumeItemViewModel}}}"
+                                Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type vm:EducationResumeItemViewModel}}}"
                                 CommandParameter="{Binding .}"/>
 
                     </Grid>
@@ -85,18 +85,18 @@
 
                         <comp:LabeledEntry Grid.Row="4"
                                            LabelText="To"
-                                           EntryText="{Binding To}" />         
+                                           EntryText="{Binding To}" />
 
                         <Grid Grid.Row="5"
                                ColumnDefinitions="*, *">
 
                             <Button Text="Clear"
                                     BackgroundColor="{StaticResource Magenta}"
-                                    Command="{Binding ClearAddCommand, Source={RelativeSource AncestorType={x:Type vm:ResumeItemViewModel}}}" />
+                                    Command="{Binding ClearAddCommand, Source={RelativeSource AncestorType={x:Type vm:EducationResumeItemViewModel}}}" />
 
                             <Button Grid.Column="1"
                                     Text="Add"
-                                    Command="{Binding AddCommand, Source={RelativeSource AncestorType={x:Type vm:ResumeItemViewModel}}}" />
+                                    Command="{Binding AddCommand, Source={RelativeSource AncestorType={x:Type vm:EducationResumeItemViewModel}}}" />
 
                         </Grid>
 

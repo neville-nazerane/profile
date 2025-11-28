@@ -67,8 +67,13 @@ namespace Profile.AdminApp.Utils
         {
             if (Items is null) return;
 
-            Items.Remove(item);
-            await SaveAsync();
+            var confirm = await MauiUtils.DisplayConfirmationAsync("Delete?", "Are you sure you want to delete this record?");
+            if (confirm)
+            {
+                Items.Remove(item);
+                await SaveAsync();
+            }
+
         }
 
         [RelayCommand]

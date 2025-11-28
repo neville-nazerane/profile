@@ -8,6 +8,10 @@
              x:DataType="vm:ExperienceStatsViewModel"
              Title="Experience Stats">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
     <CollectionView ItemsSource="{Binding Items}"
                     Footer="{Binding ToAdd}"
                     Margin="{OnIdiom Desktop=30, Phone=10}">
@@ -37,9 +41,6 @@
                                 BackgroundColor="{StaticResource Magenta}"
                                 Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type vm:ExperienceStatsViewModel}}}"
                                 CommandParameter="{Binding .}"/>
-                        <Button Grid.Column="1"
-                                Text="Save"
-                                Command="{Binding SaveCommand, Source={RelativeSource AncestorType={x:Type vm:ExperienceStatsViewModel}}}" />
                     </Grid>
                     
                 </Grid>

@@ -8,20 +8,12 @@ namespace Profile.Website.Services
         private readonly HttpClient _httpClient = httpClient;
 
         public IAsyncEnumerable<ExperenceStat?> GetExperienceStatsAsync()
-        {
-            var res = _httpClient.GetFromJsonAsAsyncEnumerable<ExperenceStat>(
+            => _httpClient.GetFromJsonAsAsyncEnumerable<ExperenceStat>(
                                             $"profile-data/experience-stats?cache={Guid.NewGuid()}");
 
-            return res;
-        }
-
         public IAsyncEnumerable<SkillInfo?> GetSkillInfoAsync()
-        {
-            var res = _httpClient.GetFromJsonAsAsyncEnumerable<SkillInfo>(
+            => _httpClient.GetFromJsonAsAsyncEnumerable<SkillInfo>(
                                             $"profile-data/skill-info?cache={Guid.NewGuid()}");
-
-            return res;
-        }
 
     }
 }

@@ -1,28 +1,13 @@
 ﻿using Microsoft.JSInterop;
 using Profile.Models;
+using Profile.Website.Services;
 
 namespace Profile.Website.Pages
 {
-    public partial class Index(IJSRuntime js)
+    public partial class Index(IJSRuntime js, DataService dataService)
     {
 
-        static readonly IEnumerable<ExperenceStat> experenceStats = [
-        new()
-                {
-                    YearStarted = 2015,
-                    Label = ".NET Development"
-                },
-                new()
-                {
-                    YearStarted = 2019,
-                    Label = "Years US Experience"
-                },
-                new()
-                {
-                    YearStarted = 2017,
-                    Label = "Years Worked"
-                }
-    ];
+        static readonly ICollection<ExperenceStat> experenceStats = [];
 
         static readonly IEnumerable<SocialData> Socials =
             [
@@ -40,31 +25,27 @@ namespace Profile.Website.Pages
                 }
             ];
 
-        static readonly IEnumerable<SkillInfo> skills = [
-
-            new()
-            {
-                Title = "C#",
-                Description = "See sharp",
-                Precentage = 90
-            },
-            new()
-            {
-                Title = "Maui",
-                Description = "Android and iOS deployments",
-                Precentage = 80
-            },
-            new()
-            {
-                Title = "Javascript",
-                Description = "Javascript",
-                Precentage = 70
-            }
-            
-        ];
+        static readonly ICollection<SkillInfo> skills = [];
         
         private readonly IJSRuntime _js = js;
+        private readonly DataService _dataService = dataService;
 
+        protected override async Task OnInitializedAsync()
+        {
+            await foreach (var exp in _dataService.GetExperienceStatsAsync())
+            {
+                if (exp is not null)
+                    experenceStats.Add(exp);
+            }
+
+            await foreach (var skill in _dataService.GetSkillInfoAsync())
+            {
+                if (skill is not null)
+                    skills.Add(skill);
+            }
+
+            await base.OnInitializedAsync();
+        }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

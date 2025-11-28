@@ -20,7 +20,7 @@ namespace Profile.AdminApp.Utils
             => CurrentPage.DisplayAlertAsync(title, message, cancel);
 
         public static Task<bool> DisplayConfirmationAsync(string title, string message, string accept = "Yes", string cancel = "No")
-            => CurrentPage.DisplayAlertAsync(title, message, cancel, accept);
+            => CurrentPage.DisplayAlertAsync(title, message, accept, cancel);
 
     }
 }

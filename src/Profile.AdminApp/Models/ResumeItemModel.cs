@@ -7,16 +7,16 @@ namespace Profile.AdminApp.Models
     public partial class ResumeItemModel : ObservableObject, IMapable<ResumeItem>
     {
         [ObservableProperty]
-        public string? title;
+        string? title;
 
         [ObservableProperty]
-        public string? location;
+        string? location;
 
         [ObservableProperty]
-        public string? description;
+        string? description;
 
         [ObservableProperty]
-        public string? timeLine;
+        string? timeLine;
 
         public void FromModel(ResumeItem model)
         {

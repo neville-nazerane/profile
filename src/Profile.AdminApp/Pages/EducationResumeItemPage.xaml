@@ -35,9 +35,10 @@
                                        LabelText="Location"
                                        EntryText="{Binding Location}" />
 
-                    <comp:LabeledEntry Grid.Row="2"
-                                       LabelText="Description"
-                                       EntryText="{Binding Description}" />
+                    <Editor Grid.Row="2"
+                            Placeholder="Description"
+                            AutoSize="TextChanges"
+                            Text="{Binding Description}" />
 
                     <comp:LabeledEntry Grid.Row="3"
                                         LabelText="TimeLine"
@@ -72,9 +73,10 @@
                                            LabelText="Location"
                                            EntryText="{Binding Location}" />
 
-                        <comp:LabeledEntry Grid.Row="2"
-                                           LabelText="Description"
-                                           EntryText="{Binding Description}" />
+                        <Editor Grid.Row="2"
+                                Placeholder="Description"
+                                AutoSize="TextChanges"
+                                Text="{Binding Description}" />
 
                         <comp:LabeledEntry Grid.Row="3"
                                         LabelText="TimeLine"

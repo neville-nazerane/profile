@@ -8,11 +8,6 @@
     Shell.FlyoutBehavior="{OnIdiom Desktop=Locked, Default=Flyout}">
 
     <ShellContent
-        Title="Settings"
-        ContentTemplate="{DataTemplate pages:SettingsPage}"
-        Route="settings" />
-
-    <ShellContent
         Title="Personal Info"
         ContentTemplate="{DataTemplate pages:PersonalInfoPage}"
         Route="personalInfo" />
@@ -36,5 +31,10 @@
         Title="Education Resume"
         ContentTemplate="{DataTemplate pages:EducationResumeItemPage}"
         Route="resumeEducation" />
+
+    <ShellContent
+        Title="Settings"
+        ContentTemplate="{DataTemplate pages:SettingsPage}"
+        Route="settings" />
 
 </Shell>

@@ -9,6 +9,7 @@
              Title="Experience Stats">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem IsEnabled="{OnPlatform WinUI=True, Default=False}" Text="Refresh" Command="{Binding RefreshCommand}" />
         <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
     </ContentPage.ToolbarItems>
 

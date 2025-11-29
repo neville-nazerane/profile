@@ -22,7 +22,14 @@ namespace Profile.AdminApp.Utils
         [ObservableProperty]
         TLocalModel? toAdd;
 
-        public async Task InitAsync()
+        public Task InitAsync()
+        {
+            ToAdd = new();
+            return RefreshAsync();
+        }
+
+        [RelayCommand]
+        async Task RefreshAsync()
         {
             var res = await BlobHttpClient.GetEnumerableAsync<TModel>(_fileName);
             if (res is not null)
@@ -36,8 +43,6 @@ namespace Profile.AdminApp.Utils
 
                 Items = new(data);
             }
-
-            ToAdd = new();
         }
 
         [RelayCommand]

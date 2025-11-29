@@ -15,9 +15,9 @@
     <RefreshView Command="{Binding RefreshCommand}"
                  IsRefreshing="{Binding RefreshCommand.IsRunning}" >
         <CollectionView ItemsSource="{Binding Items}"
-                    Footer="{Binding ToAdd}"
-                    CanReorderItems="True"
-                    Margin="{OnIdiom Desktop=30, Phone=10}">
+                        Footer="{Binding ToAdd}"
+                        CanReorderItems="True"
+                        Margin="{OnIdiom Desktop=30, Phone=10}">
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
@@ -40,7 +40,6 @@
 
                         <Editor Grid.Row="2"
                             Placeholder="Description"
-                            AutoSize="TextChanges"
                             Text="{Binding Description}" />
 
                         <comp:LabeledEntry Grid.Row="3"
@@ -78,7 +77,6 @@
 
                             <Editor Grid.Row="2"
                                 Placeholder="Description"
-                                AutoSize="TextChanges"
                                 Text="{Binding Description}" />
 
                             <comp:LabeledEntry Grid.Row="3"

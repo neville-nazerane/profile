@@ -39,7 +39,6 @@
 
                         <Editor Grid.Row="2"
                             Placeholder="Description"
-                            AutoSize="TextChanges"
                             Text="{Binding Description}" />
 
                         <comp:LabeledEntry Grid.Row="3"
@@ -77,7 +76,6 @@
 
                             <Editor Grid.Row="2"
                                 Placeholder="Description"
-                                AutoSize="TextChanges"
                                 Text="{Binding Description}" />
 
                             <comp:LabeledEntry Grid.Row="3"

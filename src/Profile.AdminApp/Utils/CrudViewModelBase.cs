@@ -22,10 +22,10 @@ namespace Profile.AdminApp.Utils
         [ObservableProperty]
         TLocalModel? toAdd;
 
-        public Task InitAsync()
+        public async Task InitAsync()
         {
+            await RefreshAsync();
             ToAdd = new();
-            return RefreshAsync();
         }
 
         [RelayCommand]

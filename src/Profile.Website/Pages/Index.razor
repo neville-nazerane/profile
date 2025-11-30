@@ -21,6 +21,7 @@
         </nav>
 
         <div class="header-social-links">
+            <a href="/print" target="_blank"><i class="bi bi-printer"></i></a>
             @foreach (var social in Socials)
             {
                 <a href="@social.Url" class="@social.Class" target="_blank"><i class="bi @social.Icon"></i></a>
@@ -48,7 +49,7 @@
                         <a href="https://docs.nevillenazerane.com" class="btn btn-outline">My Documentation</a>
                     </div>
                     <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
-                        @foreach (var stat in experenceStats)
+                        @foreach (var stat in contents.ExperenceStats)
                         {
                             <div class="stat-item">
                                 <span class="stat-number">@stat.YearsUntilNow+</span>
@@ -103,7 +104,7 @@
                         <div class="personal-info">
                             <div class="row g-4">
 
-                                @foreach (var info in personalInfo)
+                                @foreach (var info in contents.PersonalInfo)
                                 {
                                     <div class="col-lg-6">
                                         <div class="info-item">
@@ -129,17 +130,17 @@
 
             <div class="row g-4 skills-animation">
 
-                @for (int i = 0; i < skills.Count(); i++)
+                @for (int i = 0; i < contents.Skills.Count(); i++)
                 {
-                    var skill = skills.ElementAt(i);
+                    var skill = contents.Skills.ElementAt(i);
 
                     <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                         <div class="skill-box">
                             <h3>@skill.Title</h3>
                             <p>@skill.Description</p>
-                            <span class="text-end d-block">@skill.Precentage%</span>
+                            <span class="text-end d-block">@skill.Percentage%</span>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="@skill.Precentage" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="@skill.Percentage" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
@@ -175,7 +176,7 @@
 
                             <div class="timeline">
 
-                                <ResumeContent Items="workItems" />
+                                <ResumeContent Items="contents.WorkItems" />
 
                             </div>
                         </div>
@@ -186,7 +187,7 @@
 
                             <div class="timeline">
 
-                                <ResumeContent Items="educationItems" />
+                                <ResumeContent Items="contents.EducationItems" />
                             </div>
                         </div>
                     </div>

@@ -22,26 +22,33 @@ namespace Profile.AdminApp.Utils
         [ObservableProperty]
         TLocalModel? toAdd;
 
-        public Task InitAsync()
+        public async Task InitAsync()
         {
+            await RefreshAsync();
             ToAdd = new();
-            return RefreshAsync();
         }
 
         [RelayCommand]
         async Task RefreshAsync()
         {
-            var res = await BlobHttpClient.GetEnumerableAsync<TModel>(_fileName);
-            if (res is not null)
+            try
             {
-                var data = res.Select(m =>
+                var res = await BlobHttpClient.GetEnumerableAsync<TModel>(_fileName);
+                if (res is not null)
                 {
-                    var d = new TLocalModel();
-                    d.FromModel(m);
-                    return d;
-                }).ToList();
+                    var data = res.Select(m =>
+                    {
+                        var d = new TLocalModel();
+                        d.FromModel(m);
+                        return d;
+                    }).ToList();
 
-                Items = new(data);
+                    Items = new(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                await MauiUtils.DisplayErrorAsync("Failed loading. " + ex);
             }
         }
 

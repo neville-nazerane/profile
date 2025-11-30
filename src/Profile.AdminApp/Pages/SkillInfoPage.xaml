@@ -40,8 +40,8 @@
 
                         <comp:LabeledEntry Grid.Row="2"
                                        Keyboard="Numeric"
-                                       LabelText="Precentage"
-                                       EntryText="{Binding Precentage}" />
+                                       LabelText="Percentage"
+                                       EntryText="{Binding Percentage}" />
 
                         <Grid Grid.Row="3"
                           ColumnDefinitions="*, *">
@@ -72,8 +72,8 @@
 
                             <comp:LabeledEntry Grid.Row="2"
                                        Keyboard="Numeric"
-                                       LabelText="Precentage"
-                                       EntryText="{Binding Precentage}" />
+                                       LabelText="Percentage"
+                                       EntryText="{Binding Percentage}" />
 
 
                             <Grid Grid.Row="3"

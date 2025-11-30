@@ -16,9 +16,9 @@
 
     <h4 class="mt-4">Skills</h4>
     <ul>
-        @foreach (var skill in contents.Skills.OrderBy(s => s.Percentage))
+        @foreach (var skill in contents.Skills)
         {
-            <li>@skill.Title</li>
+            <li>@skill.Title (@skill.LevelLabel)</li>
         }
     </ul>
 

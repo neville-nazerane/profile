@@ -7,10 +7,10 @@ namespace Profile.AdminApp.Models
     public partial class PersonalInfoModel : ObservableObject, IMapable<PersonalInfo>
     {
         [ObservableProperty]
-        public string? title;
+        string? title;
 
         [ObservableProperty]
-        public string? detail;
+        string? detail;
 
         public void FromModel(PersonalInfo model)
         {

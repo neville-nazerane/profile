@@ -12,10 +12,10 @@ namespace Profile.AdminApp.Models
     {
 
         [ObservableProperty]
-        public int yearStarted;
+        int yearStarted;
 
         [ObservableProperty]
-        public string? label;
+        string? label;
 
         public void FromModel(ExperenceStat model)
         {

@@ -10,13 +10,13 @@ namespace Profile.AdminApp.Models
     public partial class SkillInfoModel : ObservableObject, IMapable<SkillInfo>
     {
         [ObservableProperty]
-        public string? title;
+        string? title;
 
         [ObservableProperty]
-        public string? description;
+        string? description;
 
         [ObservableProperty]
-        public int precentage;
+        int precentage;
 
         public void FromModel(SkillInfo model)
         {

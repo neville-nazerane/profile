@@ -10,11 +10,11 @@ using System.Text;
 
 namespace Profile.AdminApp.Utils
 {
-    public abstract partial class CrudViewModelBase<TModel, TLocalModel> : ObservableObject
+    public abstract partial class CrudViewModelBase<TModel, TLocalModel>(string fileName) : ObservableObject
         where TModel : class
         where TLocalModel : IMapable<TModel>, new()
     {
-        private readonly string _fileName;
+        private readonly string _fileName = fileName;
 
         [ObservableProperty]
         ObservableCollection<TLocalModel>? items;
@@ -22,12 +22,14 @@ namespace Profile.AdminApp.Utils
         [ObservableProperty]
         TLocalModel? toAdd;
 
-        protected CrudViewModelBase(string fileName)
+        public Task InitAsync()
         {
-            _fileName = fileName;
+            ToAdd = new();
+            return RefreshAsync();
         }
 
-        public async Task InitAsync()
+        [RelayCommand]
+        async Task RefreshAsync()
         {
             var res = await BlobHttpClient.GetEnumerableAsync<TModel>(_fileName);
             if (res is not null)
@@ -41,8 +43,6 @@ namespace Profile.AdminApp.Utils
 
                 Items = new(data);
             }
-
-            ToAdd = new();
         }
 
         [RelayCommand]

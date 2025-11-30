@@ -39,8 +39,9 @@
                                        EntryText="{Binding Location}" />
 
                         <Editor Grid.Row="2"
-                            Placeholder="Description"
-                            Text="{Binding Description}" />
+                                Placeholder="Description"
+                                HeightRequest="50"
+                                Text="{Binding Description}" />
 
                         <comp:LabeledEntry Grid.Row="3"
                                         LabelText="TimeLine"
@@ -76,8 +77,9 @@
                                            EntryText="{Binding Location}" />
 
                             <Editor Grid.Row="2"
-                                Placeholder="Description"
-                                Text="{Binding Description}" />
+                                    Placeholder="Description"
+                                    HeightRequest="50"
+                                    Text="{Binding Description}" />
 
                             <comp:LabeledEntry Grid.Row="3"
                                         LabelText="TimeLine"

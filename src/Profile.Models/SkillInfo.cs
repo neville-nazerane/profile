@@ -6,7 +6,7 @@
 
         public required string Description { get; set; }
 
-        public required int Precentage { get; set; }
+        public required int Percentage { get; set; }
 
     }
 }

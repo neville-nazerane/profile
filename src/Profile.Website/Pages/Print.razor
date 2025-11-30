@@ -1,0 +1,53 @@
+﻿@page "/print"
+
+<div class="resume">
+    <div class="resume-wrapper">
+        <div class="resume-block">
+            <h2>Neville Nazerane</h2>
+            <h2>.NET Developer</h2>
+        </div>
+    </div>
+    <p class="text-muted">
+        nevillenazerane@yahoo.com | https://github.com/neville-nazerane | https://www.linkedin.com/in/neville-nazerane
+    </p>
+
+    <hr>
+
+
+    <h4 class="mt-4">Skills</h4>
+    <ul>
+        @foreach (var skill in contents.Skills.OrderBy(s => s.Percentage))
+        {
+            <li>@skill.Title</li>
+        }
+    </ul>
+
+    <h4 class="mt-4">Experience</h4>
+
+    @foreach (var work in contents.WorkItems)
+    {
+        <div class="mb-3">
+            <strong>@work.Title</strong><br>
+            <small class="text-muted">@work.TimeLine</small>
+            <p>
+                @((MarkupString)work.Description)
+            </p>
+        </div>
+    }
+
+    <h4 class="mt-4">Education</h4>
+    
+    @foreach (var edu in contents.EducationItems)
+    {
+        <div class="mb-3">
+            <strong>@edu.Title</strong><br>
+            <small class="text-muted">@edu.TimeLine</small>
+            <p>
+                @((MarkupString)edu.Description)
+            </p>
+        </div>
+    }
+
+
+
+</div>

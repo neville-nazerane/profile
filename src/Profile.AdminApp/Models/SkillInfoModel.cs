@@ -16,13 +16,13 @@ namespace Profile.AdminApp.Models
         string? description;
 
         [ObservableProperty]
-        int precentage;
+        int percentage;
 
         public void FromModel(SkillInfo model)
         {
             Title = model.Title;
             Description = model.Description;
-            Precentage = model.Precentage;
+            Percentage = model.Percentage;
         }
 
         public SkillInfo ToModel()
@@ -34,7 +34,7 @@ namespace Profile.AdminApp.Models
             {
                 Title = Title,
                 Description = Description,
-                Precentage = Precentage
+                Percentage = Percentage
             };
         }
     }

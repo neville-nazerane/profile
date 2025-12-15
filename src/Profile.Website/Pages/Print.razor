@@ -9,7 +9,7 @@
         </div>
     </div>
     <p class="text-muted">
-        nevillenazerane@yahoo.com | https://github.com/neville-nazerane | https://www.linkedin.com/in/neville-nazerane
+            https://nevillenazerane.com | https://github.com/neville-nazerane | https://www.linkedin.com/in/neville-nazerane
     </p>
 
     <hr>
@@ -28,7 +28,11 @@
     @foreach (var work in contents.WorkItems)
     {
         <div class="mb-3">
-            <strong>@work.Title</strong><br>
+            <div style="display:flex; justify-content:space-between;">
+                <strong>@work.Location</strong>
+                <strong>@work.Title</strong>
+            </div>
+            <br>
             <small class="text-muted">@work.TimeLine</small>
             <p>
                 @((MarkupString)work.Description)

@@ -40,9 +40,9 @@
 
             <div class="row align-items-center content">
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <h2>.NET Developer</h2>
+                    <h2>.NET Software Engineer</h2>
                     <p class="lead">
-                        Full-stack developer with experience across web, mobile, and Azure-based systems
+                        Full-stack .NET engineer across web, mobile, and Azure systems
                     </p>
                     <div class="cta-buttons" data-aos="fade-up" data-aos-delay="300">
                         <a href="https://github.com/neville-nazerane" class="btn btn-primary">View My Git</a>
@@ -90,10 +90,10 @@
                 <div data-aos="fade-left" data-aos-delay="300">
                     <div class="about-content">
 
-                        <h2>Full-stack .NET developer</h2>
+                        <h2>Senior .NET Engineer — Web, Mobile, Cloud</h2>
 
                         <p class="lead mb-4">
-                            Passionate developer who enjoys building coding inside and outside of work
+                            Passionate software engineer building systems both professionally and personally
                         </p>
 
                         <p class="mb-4">
@@ -109,7 +109,14 @@
                                     <div class="col-lg-6">
                                         <div class="info-item">
                                             <span class="label">@info.Title</span>
-                                            <span class="value">@info.Detail</span>
+                                            @if (info.Detail.StartsWith("https://"))
+                                            {
+                                                <a target="_blank" href="@info.Detail">@info.Detail</a>
+                                            }
+                                            else
+                                            {
+                                                <span class="value">@info.Detail</span>
+                                            }
                                         </div>
                                     </div>
                                 }
